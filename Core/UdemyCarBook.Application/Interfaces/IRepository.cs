@@ -10,8 +10,8 @@ namespace UdemyCarBook.Application.Interfaces
     {
         Task<List<T>> GetAllASync();
         Task<T> GetByIdAsync(int id);
-        Task<T> CreatAsync(T entity);
-        Task<T> UpdateAsync(T entity);
-        Task<T> RemoveAsync(int id);
+        Task CreatAsync(T entity);
+        Task UpdateAsync(T entity);
+        Task RemoveAsync(T entity);
     }
 }
