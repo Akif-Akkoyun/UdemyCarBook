@@ -15,7 +15,7 @@ namespace UdemyCarBook.Application.Features.CQRS.Handlers.BannerHandlers
         }
         public async Task<List<GetBannerQueryResult>> Handle()
         {
-            var values = await _repository.GetAllASync();
+            var values = await _repository.GetAllAsync();
             return values.Select(x => new GetBannerQueryResult
             {
                 Id = x.Id,

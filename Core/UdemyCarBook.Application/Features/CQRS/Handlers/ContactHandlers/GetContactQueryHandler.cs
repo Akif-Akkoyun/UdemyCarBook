@@ -14,7 +14,7 @@ namespace UdemyCarBook.Application.Features.CQRS.Handlers.ContactHandlers
         }
         public async Task<List<GetContactQueryResult>> Handle()
         {
-            var values = await _repository.GetAllASync();
+            var values = await _repository.GetAllAsync();
             return values.Select(x => new GetContactQueryResult
             {
                 Id = x.Id,
