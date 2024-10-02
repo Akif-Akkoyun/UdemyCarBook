@@ -9,7 +9,7 @@ namespace UdemyCarBook.Application.Interfaces
 {
     public interface IRepository<T> where T : class
     {
-        Task<List<T>> GetAllASync();
+        Task<List<T>> GetAllAsync();
         Task<T> GetByIdAsync(int id);
         Task CreatAsync(T entity);
         Task UpdateAsync(T entity);
