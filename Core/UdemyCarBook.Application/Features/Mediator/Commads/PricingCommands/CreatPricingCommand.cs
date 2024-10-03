@@ -5,11 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UdemyCarBook.Application.Features.Mediator.Commads.LocationCommand
+namespace UdemyCarBook.Application.Features.Mediator.Commads.PricingCommand
 {
-    internal class UpdateLocationCommand : IRequest
+    public class CreatPricingCommand : IRequest
     {
-        public int Id { get; set; }
         public string Name { get; set; }
     }
 }
