@@ -26,6 +26,7 @@ namespace UdemyCarBook.Application.Features.Mediator.Handlers.FooterAddressHandl
             return new GetFooterAddressByIdQueryResult
             {
                 Id = value.Id,
+                Description = value.Description,
                 Email = value.Email,
                 Phone = value.Phone,
                 Adress = value.Adress
