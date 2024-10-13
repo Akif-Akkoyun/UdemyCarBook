@@ -8,23 +8,10 @@ namespace UdemyCarBook.WebUI.Controllers
 {
     public class ServiceController : Controller
     {
-        private readonly IHttpClientFactory _httpClientFactory;
-
-        public ServiceController(IHttpClientFactory httpClientFactory)
+        public IActionResult Index()
         {
-            _httpClientFactory = httpClientFactory;
-        }
-
-        public async Task<IActionResult> Index()
-        {
-            var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync("https://localhost:7219/api/Services");
-            if (response.IsSuccessStatusCode)
-            {
-                var jsonData = await response.Content.ReadAsStringAsync();
-                var testimonials = JsonConvert.DeserializeObject<List<ResultServiceDto>>(jsonData);
-                return View(testimonials);
-            }
+            ViewBag.v1 = "Hizmetler";
+            ViewBag.v2 = "Hizmetlerimiz";
             return View();
         }
     }

@@ -30,5 +30,7 @@ namespace UdemyCarBook.Persistence.Context
         public DbSet<ServicesEntity> Services { get; set; }
         public DbSet<SocialMediaEntity> SocialMedias { get; set; }
         public DbSet<TestimonialEntity> Testimonials { get; set; }
+        public DbSet<AuthorEntity> Authors { get; set; }
+        public DbSet<BlogEntity> Blogs { get; set; }
     }
 }
