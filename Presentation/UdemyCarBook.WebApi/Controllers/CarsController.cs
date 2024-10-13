@@ -16,8 +16,9 @@ namespace UdemyCarBook.WebApi.Controllers
         private readonly UpdateCarCommandHandler _updateCarCommandHandler;
         private readonly RemoveCarCommandHandler _removeCarCommandHandler;
         private readonly GetCarWithBrandQueryHandler _getCarWithBrandQueryHandler;
+        private readonly GetLast5CarsWithBrandQueryHandler _getCarLast5WithBrandQueryHandler;
 
-        public CarsController(CreateCarCommandHandler createCarCommandHandler, GetCarByIdQueryHandler getCarByIdQueryHandler, GetCarQueryHandler getCarQueryHandler, UpdateCarCommandHandler updateCarCommandHandler, RemoveCarCommandHandler removeCarCommandHandler, GetCarWithBrandQueryHandler getCarWithBrandQueryHandler)
+        public CarsController(CreateCarCommandHandler createCarCommandHandler, GetCarByIdQueryHandler getCarByIdQueryHandler, GetCarQueryHandler getCarQueryHandler, UpdateCarCommandHandler updateCarCommandHandler, RemoveCarCommandHandler removeCarCommandHandler, GetCarWithBrandQueryHandler getCarWithBrandQueryHandler, GetLast5CarsWithBrandQueryHandler getCarLast5WithBrandQueryHandler)
         {
             _createCarCommandHandler = createCarCommandHandler;
             _getCarByIdQueryHandler = getCarByIdQueryHandler;
@@ -25,6 +26,7 @@ namespace UdemyCarBook.WebApi.Controllers
             _updateCarCommandHandler = updateCarCommandHandler;
             _removeCarCommandHandler = removeCarCommandHandler;
             _getCarWithBrandQueryHandler = getCarWithBrandQueryHandler;
+            _getCarLast5WithBrandQueryHandler = getCarLast5WithBrandQueryHandler;
         }
         [HttpGet]
         public async Task<IActionResult> CarList()
@@ -60,6 +62,12 @@ namespace UdemyCarBook.WebApi.Controllers
         public IActionResult GetCarWithBrand()
         {
             var values =  _getCarWithBrandQueryHandler.Handle();
+            return Ok(values);
+        }
+        [HttpGet("GetLast5CarWithBrand")]
+        public IActionResult GetLast5CarWithBrand()
+        {
+            var values = _getCarLast5WithBrandQueryHandler.Handle();
             return Ok(values);
         }
     }
