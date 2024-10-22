@@ -17,5 +17,6 @@ namespace UdemyCarBook.Domain.Entities
         public AuthorEntity Author { get; set; } = default!;
         public int CategoryID { get; set; }
         public CategoryEntity Category { get; set; } = default!;
+        public List<TagCloudEntity> TagClouds{ get; set; } = default!;
     }
 }
