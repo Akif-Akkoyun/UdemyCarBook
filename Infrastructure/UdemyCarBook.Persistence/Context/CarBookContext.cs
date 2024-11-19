@@ -33,5 +33,6 @@ namespace UdemyCarBook.Persistence.Context
         public DbSet<AuthorEntity> Authors { get; set; }
         public DbSet<BlogEntity> Blogs { get; set; }
         public DbSet<TagCloudEntity> TagClouds { get; set; }
+        public DbSet<CommentEntity> Comments { get; set; }
     }
 }
