@@ -9,12 +9,14 @@ using UdemyCarBook.Application.Interfaces;
 using UdemyCarBook.Application.Interfaces.BlogInterfaces;
 using UdemyCarBook.Application.Interfaces.CarInterfaces;
 using UdemyCarBook.Application.Interfaces.CarPricingInterface;
+using UdemyCarBook.Application.Interfaces.TagCloudInterfaces;
 using UdemyCarBook.Application.Services;
 using UdemyCarBook.Persistence.Context;
 using UdemyCarBook.Persistence.Repositories;
 using UdemyCarBook.Persistence.Repositories.BlogRepositories;
 using UdemyCarBook.Persistence.Repositories.CarPricingRepositories;
 using UdemyCarBook.Persistence.Repositories.CarRepositories;
+using UdemyCarBook.Persistence.Repositories.TagCloudRepositories;
 
 namespace UdemyCarBook.WebApi
 {
@@ -31,6 +33,7 @@ namespace UdemyCarBook.WebApi
             builder.Services.AddScoped(typeof(ICarRepository), typeof(CarRepository));
             builder.Services.AddScoped(typeof(IBlogRepository), typeof(BlogRepository));
             builder.Services.AddScoped(typeof(ICarPricingRepository), typeof(CarPricingRepository));
+            builder.Services.AddScoped(typeof(ITagCloudRepository), typeof(TagCloudRepository));
 
             builder.Services.AddScoped<GetAboutQueryHandler>();
             builder.Services.AddScoped<GetAboutByIdQueryHandler>();

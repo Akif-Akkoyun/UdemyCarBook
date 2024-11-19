@@ -10,27 +10,23 @@ using UdemyCarBook.Application.Interfaces.BlogInterfaces;
 
 namespace UdemyCarBook.Application.Features.Mediator.Handlers.BlogHandlers
 {
-    public class GetAllBlogsWithAuthorQueryHandler : IRequestHandler<GetAllBlogsWithAuthorQuery, List<GetAllBlogsWithAuthorQueryResult>>
+    public class GetBlogByAuthorIdQueryHandler : IRequestHandler<GetBlogByAuthorIdQuery, List<GetBlogByAuthorIdQueryResult>>
     {
         private readonly IBlogRepository _repository;
 
-        public GetAllBlogsWithAuthorQueryHandler(IBlogRepository repository)
+        public GetBlogByAuthorIdQueryHandler(IBlogRepository repository)
         {
             _repository = repository;
         }
-        public async Task<List<GetAllBlogsWithAuthorQueryResult>> Handle(GetAllBlogsWithAuthorQuery request, CancellationToken cancellationToken)
+
+        public async Task<List<GetBlogByAuthorIdQueryResult>> Handle(GetBlogByAuthorIdQuery request, CancellationToken cancellationToken)
         {
-            var values = _repository. GetAllBlogsAuthors();
-            return values.Select(x => new GetAllBlogsWithAuthorQueryResult
+            var values = _repository.GetBlogByAuthorId(request.Id);
+            return values.Select(x => new GetBlogByAuthorIdQueryResult
             {
-                AuthorID = x.AuthorID,
-                CategoryID = x.CategoryID,
-                CoverImageUrl = x.CoverImageUrl,
-                CreatedDate = x.CreatedDate,
-                Description = x.Description,
                 Id = x.Id,
-                Title = x.Title,
                 AuthorName = x.Author.Name,
+                AuthorID = x.AuthorID,
                 AuthorDescription = x.Author.Description,
                 AuthorImageUrl = x.Author.ImageUrl
             }).ToList();
