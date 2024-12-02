@@ -24,6 +24,9 @@ namespace UdemyCarBook.WebUI.Controllers
         {
             return PartialView();
         }
-
+        public PartialViewResult AdminScriptPartial()
+        {
+            return PartialView();
+        }
     }
 }

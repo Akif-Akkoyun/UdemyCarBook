@@ -8,12 +8,9 @@
 
 @await Html.PartialAsync("/Views/AdminLayout/AdminHeaderPartial.cshtml")
 
-
 <body>
-    
     <div id="layout-wrapper">
 
-        
         @await Html.PartialAsync("/Views/AdminLayout/AdminNavbarPartial.cshtml")
 
         
@@ -22,43 +19,11 @@
         <div class="main-content">
 
             @RenderBody()
-            <!-- End Page-content -->
+
             @await Html.PartialAsync("/Views/AdminLayout/AdminFooterPartial.cshtml")
-            <footer class="footer">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            2019 © Xacton.
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="text-sm-right d-none d-sm-block">
-                                Design & Develop by Myra
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-
+            
         </div>
-        <!-- end main content-->
-
     </div>
-    <!-- END layout-wrapper -->
-    <!-- Overlay-->
-    <div class="menu-overlay"></div>
-
-
-    <!-- jQuery  -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/metismenu.min.js"></script>
-    <script src="assets/js/waves.js"></script>
-    <script src="assets/js/simplebar.min.js"></script>
-
-    <!-- App js -->
-    <script src="assets/js/theme.js"></script>
-
+    @await Html.PartialAsync("/Views/AdminLayout/AdminScriptPartial.cshtml")
 </body>
-
 </html>
-@RenderBody()
