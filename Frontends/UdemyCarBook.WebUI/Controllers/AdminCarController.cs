@@ -57,5 +57,28 @@ namespace UdemyCarBook.WebUI.Controllers
             }
             return View();
         }
+        public async Task<IActionResult> RemoveCar(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.DeleteAsync($"https://localhost:7219/api/Cars/{id}");
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+        [HttpGet]
+        public async Task<IActionResult> UpdateCar(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.GetAsync($"https://localhost:7219/api/Cars/{id}");
+            if(responseMessage.IsSuccessStatusCode)
+            {
+                var jsonData = await responseMessage.Content.ReadAsStringAsync();
+                var value = JsonConvert.DeserializeObject<UpdateCarDto>(jsonData);
+                return View(value);
+            }
+            return View();
+        }
     }
 }
