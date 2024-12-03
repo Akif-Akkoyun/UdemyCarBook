@@ -71,12 +71,36 @@ namespace UdemyCarBook.WebUI.Controllers
         public async Task<IActionResult> UpdateCar(int id)
         {
             var client = _httpClientFactory.CreateClient();
+            var responseMessage1 = await client.GetAsync("https://localhost:7219/api/Brands");
+            var jsonData1 = await responseMessage1.Content.ReadAsStringAsync();
+            var values1 = JsonConvert.DeserializeObject<List<ResultBrandDto>>(jsonData1);
+            List<SelectListItem> brandValues = (from x in values1
+                                                select new SelectListItem
+                                                {
+                                                    Text = x.Name,
+                                                    Value = x.Id.ToString()
+                                                }).ToList();
+            ViewBag.BrandValues = brandValues;
+
             var responseMessage = await client.GetAsync($"https://localhost:7219/api/Cars/{id}");
             if(responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var value = JsonConvert.DeserializeObject<UpdateCarDto>(jsonData);
-                return View(value);
+                var values = JsonConvert.DeserializeObject<UpdateCarDto>(jsonData);
+                return View(values);
+            }
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> UpdateCar(UpdateCarDto updateCarDto)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var jsonData = JsonConvert.SerializeObject(updateCarDto);
+            StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            var responseMessage = await client.PutAsync("https://localhost:7219/api/Cars", content);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
             }
             return View();
         }
