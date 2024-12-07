@@ -1,0 +1,74 @@
+﻿@model List<ResultBannerDto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Ana Sayfa Banner Alanı</h4>
+                        <p class="card-subtitle mb-4">
+                            Ana sayfanın banner alanında bulunan bilgileri aşağıdan düzenliyebilirsiniz.Tema bütünlüğünü bozulmamsı adına lütfen sadece 1 tane veri giriniz.Aksi durumda tema bütünlüğü bozulacaktır.
+                        </p>
+                        <div class="table-responsive">
+                            <table class="table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Başlık</th>
+                                        <th>Açıklama</th>
+                                        <th>Video URL</th>
+                                        <th>Video Açıklama</th>
+                                        <th>Sil</th>
+                                        <th>Güncelle</th>
+                                        <th>Youtube'da Aç</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model == null || !Model.Any())
+                                    {
+                                        <tr>
+                                            <td class="alert-row" colspan="7">Herhangi Bir Veri Girişi Bulunamamıştır</td>
+                                        </tr>
+                                    }
+                                    else
+                                    {
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@item.Title</td>
+                                                <td>@item.Description</td>
+                                                <td>@item.VideoUrl</td>
+                                                <td>@item.VideoDescription</td>
+                                                <td><a href="/Admin/AdminBanner/RemoveBanner/@item.Id" class="btn btn-outline-danger">Sil</a></td>
+                                                <td><a href="/Admin/AdminBanner/UpdateBanner/@item.Id" class="btn btn-outline-success">Güncelle</a></td>
+                                                <td><a href="/Admin/AdminBanner/RemoveBanner/@item.Id" class="btn btn-outline-dark">Youtubede Aç</a></td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                            <br />
+                            <a href="/Admin/AdminBanner/CreateBanner/" class="btn btn-outline-primary">Yeni Banner Girişi</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .alert-row {
+        background-color: #ffcccc;
+        text-align: center;
+        color: black;
+        font-size: 12px;
+        font-weight: bold;
+    }
+</style>
+
+
