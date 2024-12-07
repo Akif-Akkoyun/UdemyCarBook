@@ -10,17 +10,17 @@ namespace UdemyCarBook.WebApi.Controllers
     [ApiController]
     public class AboutsController : ControllerBase
     {
-        private readonly CreateAboutCommandHandler _createAboutCommandHandler;
         private readonly GetAboutByIdQueryHandler _getAboutByIdQueryHandler;
         private readonly GetAboutQueryHandler _getAboutQueryHandler;
+        private readonly CreateAboutCommandHandler _createAboutCommandHandler;
         private readonly UpdateAboutCommandHandler _updateAboutCommandHandler;
         private readonly RemoveAboutCommandHandler _removeAboutCommandHandler;
 
-        public AboutsController(CreateAboutCommandHandler createAboutCommandHandler, GetAboutByIdQueryHandler getAboutByIdQueryHandler, GetAboutQueryHandler getAboutQueryHandler, UpdateAboutCommandHandler updateAboutCommandHandler, RemoveAboutCommandHandler removeAboutCommandHandler)
+        public AboutsController(GetAboutByIdQueryHandler getAboutByIdQueryHandler, GetAboutQueryHandler getAboutQueryHandler, CreateAboutCommandHandler createAboutCommandHandler, UpdateAboutCommandHandler updateAboutCommandHandler, RemoveAboutCommandHandler removeAboutCommandHandler)
         {
-            _createAboutCommandHandler = createAboutCommandHandler;
             _getAboutByIdQueryHandler = getAboutByIdQueryHandler;
             _getAboutQueryHandler = getAboutQueryHandler;
+            _createAboutCommandHandler = createAboutCommandHandler;
             _updateAboutCommandHandler = updateAboutCommandHandler;
             _removeAboutCommandHandler = removeAboutCommandHandler;
         }
@@ -40,19 +40,19 @@ namespace UdemyCarBook.WebApi.Controllers
         public async Task<IActionResult> CreateAbout(CreateAboutCommand command)
         {
             await _createAboutCommandHandler.Handle(command);
-            return Ok("Hakkında Bilgisi Eklendi");
+            return Ok("Hakkımızda Kısmı Eklendi");
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> RemoveAbout(int id)
         {
             await _removeAboutCommandHandler.Handle(new RemoveAboutCommand(id));
-            return Ok("Hakkında Bilgisi Silindi");
+            return Ok("Hakkımızda Kısmı Silindi");
         }
         [HttpPut]
         public async Task<IActionResult> UpdateAbout(UpdateAboutCommand command)
         {
             await _updateAboutCommandHandler.Handle(command);
-            return Ok("Hakkında Bilgisi Güncellendi");
+            return Ok("Hakkımızda Kısmı Güncellendi");
         }
     }
 }

@@ -46,7 +46,7 @@ namespace UdemyCarBook.WebUI.Controllers
         }
         public async Task<IActionResult> RemoveCarBrand(int id)
         {
-            var client = _httpClientFactory.CreateClient();
+            var client = _httpClientFactory.CreateClient(); 
             var responseMessage = await client.DeleteAsync($"https://localhost:7219/api/Brands/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
