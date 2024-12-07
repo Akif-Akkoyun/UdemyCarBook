@@ -43,6 +43,11 @@ namespace UdemyCarBook.Persistence.Repositories.CommentRepositories
             return _context.Comments.Find(id) ?? throw new InvalidOperationException();
         }
 
+        public List<CommentEntity> GetCommnetsByBlogId(int id)
+        {
+            return _context.Set<CommentEntity>().Where(x => x.BlogId == id).ToList();
+        }
+
         public void Remove(CommentEntity entity)
         {
             var comment = _context.Comments.Find(entity.Id);
