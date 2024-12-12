@@ -11,5 +11,6 @@ namespace UdemyCarBook.Application.Interfaces.CarInterfaces
     {
         List<CarEntity> GetCarsListWithBrands();
         List<CarEntity> GetLast5CarsWithBrands();
+        int GetCarCount();
     }
 }
