@@ -22,5 +22,8 @@ namespace UdemyCarBook.Domain.Entities
         public List<CarFeatureEntity> CarFeatures { get; set; } = default!;
         public List<CarDescription> CarDescriptions { get; set; } = default!;
         public List<CarPricingEntity> CarPricings { get; set; } = default!;
+        public List<RentACarEntity> RentACars { get; set; } = default!;
+        public List<RentACarProcessEntity> RentACarProcesses { get; set; } = default!;
+
     }
 }
