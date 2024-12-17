@@ -37,5 +37,21 @@ namespace UdemyCarBook.Persistence.Context
         public DbSet<RentACarEntity> RentACars{ get; set; }
         public DbSet<RentACarProcessEntity> RentACarProcesses{ get; set; }
         public DbSet<CustomerEntity> Customers{ get; set; }
+        public DbSet<ReservationEntity> Reservations{ get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ReservationEntity>()
+                .HasOne(x => x.PickUpLocation)
+                .WithMany(x=>x.PickUpReservation)
+                .HasForeignKey(x => x.PickUpID)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+            modelBuilder.Entity<ReservationEntity>()
+                .HasOne(x => x.DropOffLocation)
+                .WithMany(x => x.DropOffReservation)
+                .HasForeignKey(x => x.DropOffID)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+        }
     }
 }
