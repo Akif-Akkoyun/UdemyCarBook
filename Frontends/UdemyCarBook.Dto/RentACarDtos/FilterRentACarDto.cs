@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UdemyCarBook.Application.Features.Mediator.Results.RentACarResult
+namespace UdemyCarBook.Dto.RentACarDtos
 {
-    public class GetRentACarQueryResult
+    public class FilterRentACarDto
     {
-        public int Id { get; set; }
+        public int id { get; set; }
         public string Brand { get; set; }
         public string Model { get; set; }
         public decimal Amount { get; set; }
