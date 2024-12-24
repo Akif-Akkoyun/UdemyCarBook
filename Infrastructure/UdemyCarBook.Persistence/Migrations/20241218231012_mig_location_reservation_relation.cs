@@ -5,7 +5,7 @@
 namespace UdemyCarBook.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class mg_add_location_resrvation_relation : Migration
+    public partial class mig_location_reservation_relation : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -20,8 +20,8 @@ namespace UdemyCarBook.Persistence.Migrations
                     Surname = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PickUpID = table.Column<int>(type: "int", nullable: true),
-                    DropOffID = table.Column<int>(type: "int", nullable: true),
+                    PickUpLocationID = table.Column<int>(type: "int", nullable: true),
+                    DropOffLocationID = table.Column<int>(type: "int", nullable: true),
                     CarID = table.Column<int>(type: "int", nullable: false),
                     Age = table.Column<int>(type: "int", nullable: false),
                     DrivingLicence = table.Column<int>(type: "int", nullable: false),
@@ -31,26 +31,37 @@ namespace UdemyCarBook.Persistence.Migrations
                 {
                     table.PrimaryKey("PK_Reservations", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Reservations_LocationEntities_DropOffID",
-                        column: x => x.DropOffID,
+                        name: "FK_Reservations_Cars_CarID",
+                        column: x => x.CarID,
+                        principalTable: "Cars",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Reservations_LocationEntities_DropOffLocationID",
+                        column: x => x.DropOffLocationID,
                         principalTable: "LocationEntities",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Reservations_LocationEntities_PickUpID",
-                        column: x => x.PickUpID,
+                        name: "FK_Reservations_LocationEntities_PickUpLocationID",
+                        column: x => x.PickUpLocationID,
                         principalTable: "LocationEntities",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reservations_DropOffID",
+                name: "IX_Reservations_CarID",
                 table: "Reservations",
-                column: "DropOffID");
+                column: "CarID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reservations_PickUpID",
+                name: "IX_Reservations_DropOffLocationID",
                 table: "Reservations",
-                column: "PickUpID");
+                column: "DropOffLocationID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Reservations_PickUpLocationID",
+                table: "Reservations",
+                column: "PickUpLocationID");
         }
 
         /// <inheritdoc />
