@@ -43,14 +43,14 @@ namespace UdemyCarBook.Persistence.Context
         {
             modelBuilder.Entity<ReservationEntity>()
                 .HasOne(x => x.PickUpLocation)
-                .WithMany(x=>x.PickUpReservation)
-                .HasForeignKey(x => x.PickUpID)
+                .WithMany(x => x.PickUpReservation)
+                .HasForeignKey(x => x.PickUpLocationID)
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
             modelBuilder.Entity<ReservationEntity>()
                 .HasOne(x => x.DropOffLocation)
                 .WithMany(x => x.DropOffReservation)
-                .HasForeignKey(x => x.DropOffID)
+                .HasForeignKey(x => x.DropOffLocationID)
                 .OnDelete(DeleteBehavior.ClientSetNull);
         }
     }

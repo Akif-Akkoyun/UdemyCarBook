@@ -11,7 +11,7 @@ namespace UdemyCarBook.Domain.Entities
         public int Id { get; set; }
         public string Name { get; set; }
         public List<RentACarEntity> RentACars { get; set; }
-        public List<ReservationEntity> PickUpReservation{ get; set; }
-        public List<ReservationEntity> DropOffReservation{ get; set; }
+        public List<ReservationEntity> PickUpReservation { get; set; }
+        public List<ReservationEntity> DropOffReservation { get; set; }
     }
 }

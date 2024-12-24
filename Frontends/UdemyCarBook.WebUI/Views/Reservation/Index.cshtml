@@ -1,47 +1,75 @@
-﻿@{
+﻿@model CreateReservationDto
+@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/UILayOut/Index.cshtml";
 }
 
-<div class="col-md-12 block-9 mb-md-5">
-    <form class="bg-light p-5 contact-form">
-
-        <div class="form-group">
-            <input type="text" class="form-control" readonly placeholder="Almak İstediğiniz Araba">
-        </div>
-        <div class="form-group">
-            <input type="text" class="form-control" placeholder="Adınız">
-        </div>
-        <div class="form-group">
-            <input type="text" class="form-control" placeholder="Soyadınız">
-        </div>
-        <div class="form-group">
-            <input type="email" class="form-control" placeholder="Mail Adresiniz">
-        </div>
-        <div class="form-group">
-            <input type="tel" class="form-control" placeholder="Telefon Numaranız">
-        </div>
-        <div class="form-group">
-            <input type="tel" class="form-control" placeholder="Almak İstenilen Lokasyon">
-        </div>
-        <div class="form-group">
-            <input type="tel" class="form-control" placeholder="Teslim Etmek İstenilen Lokasyon">
-        </div>
-        <div class="form-group">
-            <input type="tel" class="form-control" placeholder="Teslim Etmek İstenilen Lokasyon">
-        </div>        
-        <div class="form-group">
-            <input type="text" class="form-control" placeholder="Yaşınız">
-        </div>
-        <div class="form-group">
-            <input type="text" class="form-control" placeholder="Ehliyet Yılınız">
-        </div>
-        <div class="form-group">
-            <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Eklemk İstediğiniz Not"></textarea>
-        </div>
-        <div class="form-group">
-            <input type="submit" value="Rezervasyonu Tamamla" class="btn btn-primary py-3 px-5">
-        </div>
-    </form>
-
+<div class="form-container">
+    <div class="col-md-6 block-9 mb-md-5">
+        <br />
+        @* @if (ViewBag.SuccessMessage != null)
+        {
+            <div class="alert alert-success">
+                @ViewBag.SuccessMessage
+            </div>
+        } *@
+        <br />
+        <form class="bg-light p-5 contact-form" method="post">
+            <h3 class="alert alert-dark" style="text-align:center">Rezervasyon Formu</h3>
+            <br />
+            <div class="form-group">
+                <label>Almak İstediğiniz Araç</label>
+                <input type="text" asp-for="CarID" class="form-control" >
+            </div>
+            <div class="form-group">
+                <label>Adınız</label>
+                <input type="text" asp-for="Name" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Soyadınız</label>
+                <input type="text" asp-for="Surname" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Mail Adresiniz</label>
+                <input type="email" asp-for="Email" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Telefon Numaranız</label>
+                <input type="tel" asp-for="Phone" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Teslim Alınacak Lokasyon</label>
+                @Html.DropDownListFor(x => x.PickUpLocationID, (List<SelectListItem>)ViewBag.v, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label>Teslim Edilecek Lokasyon</label>
+                @Html.DropDownListFor(x => x.DropOffLocationID, (List<SelectListItem>)ViewBag.v, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label>Yaşınız</label>
+                <input type="text" asp-for="Age" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Ehliyet Yılınız</label>
+                <input type="text" asp-for="DrivingLicence" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Not</label>
+                <textarea name="" id="" asp-for="Description" cols="30" rows="7" class="form-control"></textarea>
+            </div>
+            <div class="form-group" id="button">
+                <input type="submit" value="Rezervasyonu Tamamla" class="btn btn-primary py-3 px-">
+            </div>
+        </form>
+    </div>
 </div>
+<style>
+    .form-container {
+        display: flex;
+        justify-content: center;
+    }
+
+    #button {
+        text-align: right;
+    }
+</style>
