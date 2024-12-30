@@ -17,8 +17,12 @@ namespace UdemyCarBook.WebUI.Controllers
             _httpClientFactory = httpClientFactory;
         }
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int id)
         {
+
+            ViewBag.v1 = "Araç Kiralama";
+            ViewBag.v2 = "Araç Rezervasyon Formu";
+            ViewBag.v3 = id;
 
             var client = _httpClientFactory.CreateClient();
             var responseMessage = await client.GetAsync("https://localhost:7219/api/Location");
@@ -32,10 +36,6 @@ namespace UdemyCarBook.WebUI.Controllers
                                                 Value = x.Id.ToString()
                                             }).ToList();
             ViewBag.v = values2;
-
-
-            ViewBag.v1 = "Araç Kiralama";
-            ViewBag.v2 = "Araç Rezervasyon Formu";
             return View();
         }
         [HttpPost]
@@ -47,7 +47,7 @@ namespace UdemyCarBook.WebUI.Controllers
             var responseMessage = await client.PostAsync("https://localhost:7219/api/Reservations", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index", "Default" );
+                return RedirectToAction("Index", "Default");
             }
             return View();
         }
