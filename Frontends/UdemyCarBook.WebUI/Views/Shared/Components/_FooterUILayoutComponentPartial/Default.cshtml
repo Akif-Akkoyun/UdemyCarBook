@@ -1,4 +1,44 @@
 ﻿@model List<ResultFooterAddressDtos>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<!-- Scripts -->
+<script>
+    $(document).ready(function() {
+        $('#btn1').click(function() {
+            Swal.fire("Şartlar & Koşullar","Araba kiralama sürcine dair tüm hizmet koşullarına rezervasyonun fiziki olarak gerçekleştirileceği ofislerimizde yer alan anlaşma dokümanlarından ulaşabilirsiniz.Bütün sürecin hasar, ceza, geçişer,(hgs,ogs vs.) ile ilgili detaylar yer almaktadır.Keyifli yolculuklar dileriz.");
+        });
+    });
+     $(document).ready(function() {
+        $('#btn2').click(function() {
+            Swal.fire("Güvenlik","CarBook web sitemiz AspNet Core teknolojisi Sha256 şifreleme tekniğiyle verilerin tamemen şifreli olarak tutulması alt yapısına sahiptir. Sistemimizde JWT doğrulaması yapılmaktadır. Kullanıcılarımızın ödeme yaptıkları kart bilgileri sistemde kesinlikle saklanmamaktadır. TC. Kimlik Numarası, Mail Adresi ve telefon gibi bilgiler ise şifrelenerek tutulmaktadır.");
+        });
+    });
+    $(document).ready(function() {
+        $('#btn3').click(function() {
+            Swal.fire("Çerez Politikası","Sizlere daha iyi hizmet sunabilmek adına tarayıcı çerezlerini kullanmaktayız.");
+        });
+    });
+     $(document).ready(function() {
+        $('#btn4').click(function() {
+            Swal.fire("Sıkça Sorulan Sorular","Sistem ile ilgili sorular yer alır");
+        });
+    });
+     $(document).ready(function() {
+        $('#btn5').click(function() {
+            Swal.fire("Ödeme Yöntemleri","Ödeme işlemleri yanlızca fiziki lokasyonlarımızda kart ile yapılmaktadır.");
+        });
+    });
+     $(document).ready(function() {
+        $('#btn6').click(function() {
+            Swal.fire("Nasıl Çalışır","1.Adım Aracınızı Kiralayın \n 2.Adım Mailinizi Kontrol Edin \n 3.Adım Ofisimize gelin.");
+        });
+    });
+</script>
+
+
+
 @foreach (var item in Model)
 {
     <footer class="ftco-footer ftco-bg-dark ftco-section">
@@ -19,11 +59,11 @@
                     <div class="ftco-footer-widget mb-4 ml-md-5">
                         <h2 class="ftco-heading-2">Hızlı Linkler</h2>
                         <ul class="list-unstyled">
-                            <li><a href="#" class="py-2 d-block">Hakkımızda</a></li>
-                            <li><a href="#" class="py-2 d-block">Hizmetlerimiz</a></li>
-                            <li><a href="#" class="py-2 d-block">Şarlar & Koşullar</a></li>
-                            <li><a href="#" class="py-2 d-block">Güvenlik</a></li>
-                            <li><a href="#" class="py-2 d-block">Çerez Politikası</a></li>
+                            <li><a href="/About/Index" class="py-2 d-block">Hakkımızda</a></li>
+                            <li><a href="/Car/Index" class="py-2 d-block">Hizmetlerimiz</a></li>
+                            <li><a href="#" id="btn1" class="py-2 d-block">Şarlar & Koşullar</a></li>
+                            <li><a href="#" id="btn2" class=" py-2 d-block">Güvenlik</a></li>
+                            <li><a href="#" id="btn3" class="py-2 d-block">Çerez Politikası</a></li>
                         </ul>
                     </div>
                 </div>
@@ -31,11 +71,11 @@
                     <div class="ftco-footer-widget mb-4">
                         <h2 class="ftco-heading-2">Müşteri Desteği</h2>
                         <ul class="list-unstyled">
-                            <li><a href="#" class="py-2 d-block">Sıkça Sorulanlar</a></li>
-                            <li><a href="#" class="py-2 d-block">Ödeme Yöntemleri</a></li>
-                            <li><a href="#" class="py-2 d-block">Kiralama</a></li>
-                            <li><a href="#" class="py-2 d-block">Nasıl Çalışır</a></li>
-                            <li><a href="#" class="py-2 d-block">Bize Yazın</a></li>
+                            <li><a href="#" id="btn4" class="py-2 d-block">Sıkça Sorulanlar</a></li>
+                            <li><a href="#" id="btn5" class="py-2 d-block">Ödeme Yöntemleri</a></li>
+                            <li><a href="/CarPricing/Index" class="py-2 d-block">Kiralama</a></li>
+                            <li><a href="#" id="btn6" class="py-2 d-block">Nasıl Çalışır</a></li>
+                            <li><a href="/Contact/Index" class="py-2 d-block">Bize Yazın</a></li>
                         </ul>
                     </div>
                 </div>
@@ -64,7 +104,7 @@
             </div>
         </div>
     </footer>
-
-    <!-- loader -->
-    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
 }
+<!-- loader -->
+<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
+
