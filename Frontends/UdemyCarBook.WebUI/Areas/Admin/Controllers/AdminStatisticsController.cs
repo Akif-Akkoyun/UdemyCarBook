@@ -65,17 +65,6 @@ namespace UdemyCarBook.WebUI.Areas.Admin.Controllers
             }
             #endregion
             #region BrandCount
-            var responseMessage5 = await client.GetAsync("https://localhost:7219/api/Statistics/GetBrandCount");
-            if (responseMessage5.IsSuccessStatusCode)
-            {
-                int brandCountRadom = random.Next(1, 101);
-                var jsonData = await responseMessage5.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<ResultStatisticsDto>(jsonData);
-                ViewBag.brandCount = values.brandCount;
-                ViewBag.brandCountRadom = brandCountRadom;
-            }
-            #endregion
-            #region BrandCount
             var responseMessage6 = await client.GetAsync("https://localhost:7219/api/Statistics/GetBrandCount");
             if (responseMessage6.IsSuccessStatusCode)
             {
