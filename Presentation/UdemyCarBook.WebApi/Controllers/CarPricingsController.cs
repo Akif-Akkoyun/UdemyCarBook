@@ -8,10 +8,10 @@ namespace UdemyCarBook.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CarPricings : ControllerBase
+    public class CarPricingsController : ControllerBase
     {
         private readonly IMediator _mediator;
-        public CarPricings(IMediator mediator)
+        public CarPricingsController(IMediator mediator)
         {
             _mediator = mediator;
         }
@@ -20,6 +20,12 @@ namespace UdemyCarBook.WebApi.Controllers
         {
             var result = await _mediator.Send(new GetCarPricingWithCarQuery());
             return Ok(result);
+        }
+        [HttpGet("GetCarPricingWithTimePeriodList")]
+        public async Task<IActionResult> GetCarPricingWithTimePeriodList()
+        {
+            var values = await _mediator.Send(new GetCarPricingWithTimePeriodQuery());
+            return Ok(values);
         }
     }
 }
