@@ -30,9 +30,16 @@ namespace UdemyCarBook.WebUI.Controllers
         }
         public async Task<IActionResult> BlogDetail(int id)
         {
+            var client = _httpClientFactory.CreateClient();
             ViewBag.v1 = "Bloglar";
             ViewBag.v2 = "Blog Detayı Ve Yorumlar";
             ViewBag.blogid = id;
+
+            var response = await client.GetAsync($"https://localhost:7219/api/Comments/CommentCountByBlog?id="+id);
+
+            var jsonData = await response.Content.ReadAsStringAsync();
+            ViewBag.CommentCount = jsonData;
+
             return View();
         }
     }
