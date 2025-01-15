@@ -12,6 +12,7 @@ namespace UdemyCarBook.Application.Features.Mediator.Commads.CommentCommands
         public string Name { get; set; }
         public DateTime CreatedDate { get; set; }
         public int BlogID{ get; set; }
-        public string Descripition{ get; set; }
+        public string Description{ get; set; }
+        public string Email{ get; set; }
     }
 }

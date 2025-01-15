@@ -64,7 +64,7 @@ namespace UdemyCarBook.WebApi.Controllers
             return Ok(comment);
         }
         [HttpPost("CreateCommentWithMediator")]
-        public async Task<IActionResult> CreateReservation(CreateCommentCommand command)
+        public async Task<IActionResult> CreateCommentWith(CreateCommentCommand command)
         {
             await _mediator.Send(command);
             return Ok("Yorum başarıyla eklendi.");

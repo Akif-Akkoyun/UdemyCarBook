@@ -25,10 +25,11 @@ namespace UdemyCarBook.Application.Features.Mediator.Handlers.CommentHandlers
         {
             await _repository.CreatAsync(new CommentEntity
             {
-                Description= request.Descripition,
+                Description= request.Description,
                 Name = request.Name,
                 BlogId = request.BlogID,
                 CreatedAt = DateTime.Parse(DateTime.Now.ToShortDateString()),
+                Email = request.Email
             });
         }
     }
