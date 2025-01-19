@@ -12,5 +12,6 @@ namespace UdemyCarBook.Application.Interfaces.CarFeatureInterfaces
         List<CarFeatureEntity> GetCarFeaturesByCarId(int id);
         void ChangeCarFeatureAvailableToFalse(int id);
         void ChangeCarFeatureAvailableToTrue(int id);
+        void CreateCarFeatureByCar(CarFeatureEntity carFeatureEntity);
     }
 }

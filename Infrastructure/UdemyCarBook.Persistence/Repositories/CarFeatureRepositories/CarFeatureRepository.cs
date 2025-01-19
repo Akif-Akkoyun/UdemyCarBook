@@ -33,6 +33,12 @@ namespace UdemyCarBook.Persistence.Repositories.CarFeatureRepositories
              _context.SaveChanges();
         }
 
+        public void CreateCarFeatureByCar(CarFeatureEntity carFeatureEntity)
+        {
+            _context.CarFeatures.Add(carFeatureEntity);
+            _context.SaveChanges();
+        }
+
         public List<CarFeatureEntity> GetCarFeaturesByCarId(int id)
         {
             var values = _context.CarFeatures.Include(y=>y.Feature).Where(x => x.CarID == id).ToList();
