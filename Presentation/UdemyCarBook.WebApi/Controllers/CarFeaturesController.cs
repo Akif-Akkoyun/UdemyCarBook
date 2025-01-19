@@ -29,5 +29,11 @@ namespace UdemyCarBook.WebApi.Controllers
             await _mediator.Send(new UpdateCarFeatureAvaliableChangeToFalseCommand(id));
             return Ok("Güncelleme Yapıldı");
         }
+        [HttpGet("ChangeCarFeatureAvailableToTrue")]
+        public async Task<IActionResult> ChangeCarFeatureAvailableToTrue(int id)
+        {
+            await _mediator.Send(new UpdateCarFeatureAvaliableChangeToTrueCommand(id));
+            return Ok("Güncelleme Yapıldı");
+        }
     }
 }

@@ -29,30 +29,24 @@ namespace UdemyCarBook.WebUI.Areas.Admin.Controllers
             }
             return View();
         }
-        [HttpPost, Route("Index")]
+        [HttpPost, Route("Index/{id}")]
         public async Task<IActionResult> Index(List<ResultCarFeatureByCarIdDto> resultCarFeatureByCarIdDto)
         {
+
             foreach (var item in resultCarFeatureByCarIdDto)
             {
                 if (item.Available)
                 {
                     var client = _httpClientFactory.CreateClient();
-                    var jsonData = JsonConvert.SerializeObject(resultCarFeatureByCarIdDto);
-                    StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-                    await client.PutAsync("https://localhost:7219/api/Categories", content);
-                    return RedirectToAction("Index", "AdminCar");
-
+                    await client.GetAsync("https://localhost:7219/api/CarFeatures/ChangeCarFeatureAvailableToTrue?id=" + item.Id);
                 }
                 else
                 {
                     var client = _httpClientFactory.CreateClient();
-                    var jsonData = JsonConvert.SerializeObject(resultCarFeatureByCarIdDto);
-                    StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-                    await client.PutAsync("https://localhost:7219/api/Categories", content);
-                    return RedirectToAction("Index", "AdminCar");
+                    await client.GetAsync("https://localhost:7219/api/CarFeatures/ChangeCarFeatureAvailableToFalse?id=" + item.Id);
                 }
             }
-            return View();
+            return RedirectToAction("Index", "AdminCar");
         }
     }
 }

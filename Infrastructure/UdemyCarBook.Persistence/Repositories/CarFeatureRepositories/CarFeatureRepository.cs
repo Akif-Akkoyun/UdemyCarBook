@@ -28,9 +28,9 @@ namespace UdemyCarBook.Persistence.Repositories.CarFeatureRepositories
 
         public void ChangeCarFeatureAvailableToTrue(int id)
         {
-            var values = _context.CarFeatures.Where(x => x.Id == id).FirstOrDefault();
+            var values =  _context.CarFeatures.Where(x => x.Id == id).FirstOrDefault();
             values.Available = true;
-            _context.SaveChangesAsync();
+             _context.SaveChanges();
         }
 
         public List<CarFeatureEntity> GetCarFeaturesByCarId(int id)
