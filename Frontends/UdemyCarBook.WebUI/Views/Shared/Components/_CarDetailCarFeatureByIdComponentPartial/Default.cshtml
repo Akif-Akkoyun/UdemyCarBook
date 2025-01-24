@@ -1,0 +1,30 @@
+﻿@model List<ResultCarFeatureByCarIdDto>
+@{
+    int columnSize = 5;
+    int totalItems = Model.Count;
+    int totalColumns = (int)Math.Ceiling((double)totalItems / columnSize);
+}
+
+<div class="tab-pane fade show active" id="pills-description" role="tabpanel" aria-labelledby="pills-description-tab">
+    <div class="row">
+        @for (int i = 0; i < totalColumns; i++)
+        {
+            <div class="col-md-4">
+                <ul class="features">
+                    @for (int j = 0; j < columnSize; j++)
+                    {
+                        int index = i * columnSize + j;
+                        if (index < totalItems)
+                        {
+                            var item = Model[index];
+                            <li class="@(item.Available ? "check" : "remove")">
+                                <span class="ion-ios-checkmark"></span> @item.FeatureName
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+        }
+    </div>
+</div>
+
