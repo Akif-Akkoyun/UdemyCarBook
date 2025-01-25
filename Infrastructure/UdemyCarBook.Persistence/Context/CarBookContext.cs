@@ -15,6 +15,8 @@ namespace UdemyCarBook.Persistence.Context
             optionsBuilder.UseSqlServer("Server=.;initial Catalog=UdemyCarBookDb;integrated Security=true;Trusted_Connection=True;TrustServerCertificate=true");
         }
         public DbSet<AboutEntity> AboutEntities { get; set; }
+        public DbSet<AppUserEntity> AppUsers { get; set; }
+        public DbSet<AppRoleEntity> AppRoles { get; set; }
         public DbSet<BannerEntity> Banners{ get; set; }
         public DbSet<BrandEntity> Brands{ get; set; }
         public DbSet<CarEntity> Cars{ get; set; }
