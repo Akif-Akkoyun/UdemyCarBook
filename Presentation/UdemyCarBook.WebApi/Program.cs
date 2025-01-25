@@ -1,3 +1,5 @@
+using FluentValidation.AspNetCore;
+using System.Reflection;
 using UdemyCarBook.Application.Features.CQRS.Handlers;
 using UdemyCarBook.Application.Features.CQRS.Handlers.AboutHandlers;
 using UdemyCarBook.Application.Features.CQRS.Handlers.BannerHandlers;
@@ -37,8 +39,6 @@ namespace UdemyCarBook.WebApi
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
-            // Add services to the container.
 
             builder.Services.AddScoped<CarBookContext>();
             builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
@@ -93,14 +93,16 @@ namespace UdemyCarBook.WebApi
 
             builder.Services.AddApplicationService(builder.Configuration);
 
-            builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+            builder.Services.AddControllers().AddFluentValidation(x =>
+            {
+                x.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+            });
+
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
