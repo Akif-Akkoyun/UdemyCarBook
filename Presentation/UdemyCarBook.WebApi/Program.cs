@@ -21,6 +21,7 @@ using UdemyCarBook.Application.Interfaces.ReviewInterfaces;
 using UdemyCarBook.Application.Interfaces.StatistcsInterfaces;
 using UdemyCarBook.Application.Interfaces.TagCloudInterfaces;
 using UdemyCarBook.Application.Services;
+using UdemyCarBook.Application.Tools;
 using UdemyCarBook.Persistence.Context;
 using UdemyCarBook.Persistence.Repositories;
 using UdemyCarBook.Persistence.Repositories.BlogRepositories;
@@ -48,10 +49,10 @@ namespace UdemyCarBook.WebApi
                     options.RequireHttpsMetadata = true;
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
-                        ValidAudience = "http://localhost",
-                        ValidIssuer = "http://localhost",
+                        ValidAudience = JwtTokenDefaults.ValidAudience,
+                        ValidIssuer = JwtTokenDefaults.ValidIssuer,
                         ClockSkew = TimeSpan.Zero,
-                        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("carbookcarbook01")),
+                        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(JwtTokenDefaults.Key)),
                         ValidateLifetime = true,
                         ValidateIssuerSigningKey = true
                     };
@@ -127,6 +128,8 @@ namespace UdemyCarBook.WebApi
             }
 
             app.UseHttpsRedirection();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
