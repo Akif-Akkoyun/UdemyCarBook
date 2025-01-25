@@ -1,4 +1,6 @@
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using System.Reflection;
 using UdemyCarBook.Application.Features.CQRS.Handlers;
 using UdemyCarBook.Application.Features.CQRS.Handlers.AboutHandlers;
@@ -39,6 +41,21 @@ namespace UdemyCarBook.WebApi
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.RequireHttpsMetadata = true;
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidAudience = "http://localhost",
+                        ValidIssuer = "http://localhost",
+                        ClockSkew = TimeSpan.Zero,
+                        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("carbookcarbook01")),
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true
+                    };
+                });
 
             builder.Services.AddScoped<CarBookContext>();
             builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
