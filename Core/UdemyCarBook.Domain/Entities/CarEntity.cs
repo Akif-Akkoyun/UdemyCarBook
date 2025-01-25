@@ -25,6 +25,7 @@ namespace UdemyCarBook.Domain.Entities
         public List<RentACarEntity> RentACars { get; set; } = default!;
         public List<RentACarProcessEntity> RentACarProcesses { get; set; } = default!;
         public List<ReservationEntity> Reservations { get; set; } = default!;
+        public List<ReviewEntity> Reviews { get; set; } = default!;
 
     }
 }
