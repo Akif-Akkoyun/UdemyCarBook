@@ -49,8 +49,6 @@ This project not only helped me reinforce my existing skills but also gave me th
 ![Ekran görüntüsü 2025-01-30 090837](https://github.com/user-attachments/assets/db186238-c920-4c74-ad3c-abfbd725d963)
 ![Ekran görüntüsü 2025-01-30 090925](https://github.com/user-attachments/assets/0903b5b9-2a30-44a7-8a13-e0f412f615e4)
 ![Ekran görüntüsü 2025-01-30 093144](https://github.com/user-attachments/assets/7e173657-244e-4503-9ac5-bd38326475df)
-![Ekran görüntüsü 2025-01-30 093203](https://github.com/user-attachments/assets/d7663b86-03ce-48ff-9daf-b2ca98bb3ff6)
-![Ekran görüntüsü 2025-01-30 093212](https://github.com/user-attachments/assets/89c97243-028f-4860-8c76-28a5843ed746)
 
 
 
