@@ -1,10 +1,6 @@
-using FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Reflection;
-using UdemyCarBook.Application.Tools;
 using UdemyCarBook.Persistence.Context;
 using UdemyCarBook.Application.Services;
+using UdemyCarBook.WebApi.Hubs;
 
 namespace UdemyCarBook.WebApi
 {
@@ -13,21 +9,6 @@ namespace UdemyCarBook.WebApi
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
-            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
-                {
-                    options.RequireHttpsMetadata = true;
-                    options.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidAudience = JwtTokenDefaults.ValidAudience,
-                        ValidIssuer = JwtTokenDefaults.ValidIssuer,
-                        ClockSkew = TimeSpan.Zero,
-                        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(JwtTokenDefaults.Key)),
-                        ValidateLifetime = true,
-                        ValidateIssuerSigningKey = true
-                    };
-                });
 
             builder.Services.ApplicationServices();
 
@@ -44,6 +25,8 @@ namespace UdemyCarBook.WebApi
                 app.UseSwaggerUI();
             }
 
+            app.UseCors("CorsPolicy");
+
             app.UseHttpsRedirection();
 
             app.UseAuthentication();
@@ -51,6 +34,8 @@ namespace UdemyCarBook.WebApi
             app.UseAuthorization();
 
             app.MapControllers();
+
+            app.MapHub<CarHub>("/carHub");
 
             app.Run();
         }

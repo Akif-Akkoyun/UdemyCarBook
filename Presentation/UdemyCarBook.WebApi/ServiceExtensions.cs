@@ -1,11 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using UdemyCarBook.Application.Features.CQRS.Handlers.AboutHandlers;
+﻿using UdemyCarBook.Application.Features.CQRS.Handlers.AboutHandlers;
 using UdemyCarBook.Application.Features.CQRS.Handlers.BannerHandlers;
 using UdemyCarBook.Application.Features.CQRS.Handlers.BrandHandlers;
 using UdemyCarBook.Application.Features.CQRS.Handlers.CarHandlers;
@@ -35,6 +28,9 @@ using UdemyCarBook.Persistence.Repositories.TagCloudRepositories;
 using UdemyCarBook.Persistence.Repositories;
 using FluentValidation.AspNetCore;
 using System.Reflection;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using UdemyCarBook.Application.Tools;
 
 namespace UdemyCarBook.Persistence.Context
 {
@@ -42,6 +38,7 @@ namespace UdemyCarBook.Persistence.Context
     {
         public static void ApplicationServices(this IServiceCollection services)
         {
+            #region Mediator Configuration
             services.AddScoped<CarBookContext>();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped(typeof(ICarRepository), typeof(CarRepository));
@@ -86,11 +83,52 @@ namespace UdemyCarBook.Persistence.Context
             services.AddScoped<CreateContactCommandHandler>();
             services.AddScoped<UpdateContactCommandHandler>();
             services.AddScoped<RemoveContactCommandHandler>();
+            #endregion
 
+            #region FluentValidation Configuration
             services.AddControllers().AddFluentValidation(x =>
             {
                 x.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             });
+            #endregion
+
+            #region Jwt Configuration
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.RequireHttpsMetadata = true;
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidAudience = JwtTokenDefaults.ValidAudience,
+                        ValidIssuer = JwtTokenDefaults.ValidIssuer,
+                        ClockSkew = TimeSpan.Zero,
+                        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(JwtTokenDefaults.Key)),
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true
+                    };
+                });
+            #endregion
+
+            #region Cors Configuration
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", builder =>
+                {
+                    builder.AllowAnyHeader()
+                           .AllowAnyMethod()
+                           .SetIsOriginAllowed((host) => true)
+                           .AllowCredentials();
+                });
+            });
+            #endregion
+
+            #region SignalR Configuration
+            services.AddSignalR();
+            #endregion
+
+            #region HttpClient Configuration
+            services.AddHttpClient();
+            #endregion
         }
     }
 }
